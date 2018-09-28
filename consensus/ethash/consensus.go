@@ -45,9 +45,7 @@ var (
 	//devFeeAddress2					= common.HexToAddress(0x00F5E481162d1d9e8634b8208DA65626072810e5) //devFee2 for each block 1%
 	//projectSyndicate 				= common.HexToAddress(0x00F5E481162d1d9e8634b8208DA65626072810e5)
 )
-func ExportBlockReward() {
-	return alertCounter(value)
-}
+
 // Various error messages to mark blocks invalid. These should be private to
 // prevent engine specific errors from being referenced in the remainder of the
 // codebase, inherently breaking if the engine is swapped out. Please put common
