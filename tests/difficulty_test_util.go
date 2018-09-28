@@ -24,7 +24,6 @@ import (
 	"github.com/AdelineCoin/go-adln/common/math"
 	"github.com/AdelineCoin/go-adln/consensus/ethash"
 	"github.com/AdelineCoin/go-adln/consensus"
-	"github.com/AdelineCoin/go-adln/consensus/misc"
 	"github.com/AdelineCoin/go-adln/core/types"
 	"github.com/AdelineCoin/go-adln/params"
 )
@@ -58,7 +57,7 @@ func (test *DifficultyTest) Run(config *params.ChainConfig) error {
 		UncleHash:  test.UncleHash,
 	}
 
-	actual := ethash.CalcDifficulty(consensus.ChainReader, config, test.CurrentTimestamp.Uint64(), parent)
+	actual := ethash.CalcDifficulty(chain consensus.ChainReader, config, test.CurrentTimestamp.Uint64(), parent)
 	exp := test.CurrentDifficulty
 
 	if actual.Cmp(exp) != 0 {
