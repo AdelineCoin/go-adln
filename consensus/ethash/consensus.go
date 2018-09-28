@@ -36,8 +36,8 @@ import (
 
 // Ethash proof-of-work protocol constants.
 var (
-	onStartBlockReward 				*big.Int = new(big.Int).Mul(big.NewInt(1e+18), big.NewInt(10))			// Block reward on blockchain start
-	epochStepBlockReward 			= big.NewInt(6e+17)			// Step for Epoch
+	OnStartBlockReward 				*big.Int = new(big.Int).Mul(big.NewInt(1e+18), big.NewInt(10))			// Block reward on blockchain start
+	EpochStepBlockReward 			= big.NewInt(6e+17)			// Step for Epoch
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 15 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 	devFee							*big.Int = big.NewInt(100) //devFee 1%
@@ -45,7 +45,9 @@ var (
 	//devFeeAddress2					= common.HexToAddress(0x00F5E481162d1d9e8634b8208DA65626072810e5) //devFee2 for each block 1%
 	//projectSyndicate 				= common.HexToAddress(0x00F5E481162d1d9e8634b8208DA65626072810e5)
 )
-
+func ExportBlockReward() {
+	return alertCounter(value)
+}
 // Various error messages to mark blocks invalid. These should be private to
 // prevent engine specific errors from being referenced in the remainder of the
 // codebase, inherently breaking if the engine is swapped out. Please put common
@@ -560,71 +562,71 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
 func accuMulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
-	blockReward := onStartBlockReward 
+	blockReward := OnStartBlockReward 
 	devReward := new(big.Int)
 	syndicateReward := new(big.Int)
 	latestHeaderNumber := header.Number.Uint64()
 
 	if (latestHeaderNumber > 400000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big2)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big2)
 	}	
 		
 	if (latestHeaderNumber > 800000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big3)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big3)
 	}
 
 	if (latestHeaderNumber > 1200000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big4)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big4)
 	}
 	
 	if (latestHeaderNumber > 1600000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big5)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big5)
 	}
 	
 	if (latestHeaderNumber > 2000000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big6)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big6)
 	}
 	
 	if (latestHeaderNumber > 2400000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big7)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big7)
 	}
 	
 	if (latestHeaderNumber > 2800000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big8)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big8)
 	}
 	
 	if (latestHeaderNumber > 3200000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big9)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big9)
 	}
 	
 	if (latestHeaderNumber > 3600000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big10)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big10)
 	}
 	
 	if (latestHeaderNumber > 4000000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big11)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big11)
 	}
 	
 	if (latestHeaderNumber > 4400000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big12)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big12)
 	}
 	
 	if (latestHeaderNumber > 4800000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big13)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big13)
 	}
 	
 	if (latestHeaderNumber > 5200000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big14)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big14)
 	}
 	
 	if (latestHeaderNumber > 5600000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big15)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big15)
 	}
 	
 	if (latestHeaderNumber > 6000000){
-		epochStepBlockReward.Mul(epochStepBlockReward, big16)
+		EpochStepBlockReward.Mul(EpochStepBlockReward, big16)
 	}
-	blockReward.Sub(onStartBlockReward, epochStepBlockReward)
+	blockReward.Sub(OnStartBlockReward, EpochStepBlockReward)
 	devReward.Div(blockReward, devFee) //1% to devFee from block
 	syndicateReward.Div(blockReward, devFee.Mul(devFee, big2))
 	// AccuMulate the rewards for the miner and any included uncles
