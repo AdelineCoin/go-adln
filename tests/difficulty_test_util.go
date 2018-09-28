@@ -17,15 +17,10 @@
 package tests
 
 import (
-	"fmt"
 	"math/big"
 
 	"github.com/AdelineCoin/go-adln/common"
 	"github.com/AdelineCoin/go-adln/common/math"
-	"github.com/AdelineCoin/go-adln/consensus/ethash"
-	"github.com/AdelineCoin/go-adln/consensus"
-	"github.com/AdelineCoin/go-adln/core/types"
-	"github.com/AdelineCoin/go-adln/params"
 )
 
 //go:generate gencodec -type DifficultyTest -field-override difficultyTestMarshaling -out gen_difficultytest.go
